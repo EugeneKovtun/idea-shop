@@ -19,6 +19,7 @@ public class GoodController {
     @GetMapping
     @ResponseBody
     public Iterable<Good> getAll() {
+        // TODO: 17/10/18 add exception handler
         return service.findAll();
     }
 
