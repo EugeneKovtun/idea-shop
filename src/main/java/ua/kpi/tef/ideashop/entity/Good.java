@@ -6,9 +6,7 @@ import javax.persistence.*;
 public class Good {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column
     private Long id;
-    @Column
     private String title;
 
     public Good() {
