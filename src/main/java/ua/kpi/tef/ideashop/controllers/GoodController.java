@@ -26,13 +26,17 @@ public class GoodController {
         return service.findAll();
     }
 
+    /**
+     * @param id - id of good which we are looking for
+     * @return Good if it's found, else return http status 404 (not found)
+     */
     @GetMapping("/{id}")
     @ResponseBody
     public Good getById(@PathVariable Long id) {
         try {
             return service.findOne(id);
         } catch (NoSuchElementException exception) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product with id " + id + " not exist");
         }
     }
 }
