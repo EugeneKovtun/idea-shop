@@ -4,35 +4,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import ua.kpi.tef.ideashop.entity.Good;
-import ua.kpi.tef.ideashop.service.GoodService;
+import ua.kpi.tef.ideashop.entity.Product;
+import ua.kpi.tef.ideashop.service.ProductService;
 
 import java.util.NoSuchElementException;
 
 @RestController
-@RequestMapping("/good")
-public class GoodController {
+@RequestMapping("/product")
+public class ProductController {
     private final
-    GoodService service;
+    ProductService service;
 
     @Autowired
-    public GoodController(GoodService service) {
+    public ProductController(ProductService service) {
         this.service = service;
     }
 
     @GetMapping
     @ResponseBody
-    public Iterable<Good> getAll() {
+    public Iterable<Product> getAll() {
         return service.findAll();
     }
 
     /**
-     * @param id - id of good which we are looking for
-     * @return Good if it's found, else return http status 404 (not found)
+     * @param id - id of product which we are looking for
+     * @return Product if it's found, else return http status 404 (not found)
      */
     @GetMapping("/{id}")
     @ResponseBody
-    public Good getById(@PathVariable Long id) {
+    public Product getById(@PathVariable Long id) {
         try {
             return service.findOne(id);
         } catch (NoSuchElementException exception) {

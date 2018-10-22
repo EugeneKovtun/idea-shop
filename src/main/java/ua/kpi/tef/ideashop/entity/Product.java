@@ -3,16 +3,16 @@ package ua.kpi.tef.ideashop.entity;
 import javax.persistence.*;
 
 @Entity
-public class Good {
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String title;
 
-    public Good() {
+    public Product() {
     }
 
-    public Good(String title) {
+    public Product(String title) {
         this.title = title;
     }
 
@@ -31,11 +31,11 @@ public class Good {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Good)) return false;
+        if (!(o instanceof Product)) return false;
 
-        Good good = (Good) o;
+        Product product = (Product) o;
 
-        return (getId() != null ? getId().equals(good.getId()) : good.getId() == null) && (getTitle() != null ? getTitle().equals(good.getTitle()) : good.getTitle() == null);
+        return (getId() != null ? getId().equals(product.getId()) : product.getId() == null) && (getTitle() != null ? getTitle().equals(product.getTitle()) : product.getTitle() == null);
     }
 
     @Override
