@@ -33,10 +33,6 @@ public class ProductController {
     @GetMapping("/{id}")
     @ResponseBody
     public Product getById(@PathVariable Long id) {
-        try {
-            return service.findOne(id);
-        } catch (NoSuchElementException exception) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product with id " + id + " not exist");
-        }
+        return service.findOne(id);
     }
 }
