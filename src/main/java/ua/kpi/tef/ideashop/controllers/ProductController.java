@@ -1,13 +1,9 @@
 package ua.kpi.tef.ideashop.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 import ua.kpi.tef.ideashop.entity.Product;
 import ua.kpi.tef.ideashop.service.ProductService;
-
-import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/product")
@@ -33,6 +29,6 @@ public class ProductController {
     @GetMapping("/{id}")
     @ResponseBody
     public Product getById(@PathVariable Long id) {
-        return service.findOne(id);
+        return service.findById(id);
     }
 }

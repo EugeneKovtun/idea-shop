@@ -10,8 +10,6 @@ import ua.kpi.tef.ideashop.repository.ProductRepository;
 
 import java.util.Optional;
 
-
-@Transactional
 @Service
 public class ProductServiceImpl implements ProductService {
     private final
@@ -24,7 +22,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product findOne(Long id) throws ResponseStatusException {
+    public Product findById(Long id) throws ResponseStatusException {
         Optional<Product> optionalProduct = repository.findById(id);
         if (optionalProduct.isPresent()) {
             return optionalProduct.get();
