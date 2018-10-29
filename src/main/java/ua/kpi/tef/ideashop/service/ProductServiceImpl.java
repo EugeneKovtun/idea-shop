@@ -1,11 +1,9 @@
 package ua.kpi.tef.ideashop.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.server.ResponseStatusException;
 import ua.kpi.tef.ideashop.entity.Product;
+import ua.kpi.tef.ideashop.exception.ItemNotFoundException;
 import ua.kpi.tef.ideashop.repository.ProductRepository;
 
 import java.util.Optional;
@@ -22,12 +20,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product findById(Long id) throws ResponseStatusException {
+    public Product findById(Long id) throws ItemNotFoundException {
         Optional<Product> optionalProduct = repository.findById(id);
         if (optionalProduct.isPresent()) {
             return optionalProduct.get();
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product with id " + id + " not exist");
+            throw new ItemNotFoundException("Item with id " + id + " does not exist");
         }
 
     }
