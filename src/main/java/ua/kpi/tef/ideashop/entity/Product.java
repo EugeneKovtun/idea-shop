@@ -1,12 +1,14 @@
 package ua.kpi.tef.ideashop.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NotNull
     private String title;
 
     public Product() {

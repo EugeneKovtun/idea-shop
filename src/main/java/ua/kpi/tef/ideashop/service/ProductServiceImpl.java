@@ -34,4 +34,19 @@ public class ProductServiceImpl implements ProductService {
     public Iterable<Product> findAll() {
         return repository.findAll();
     }
+
+    @Override
+    public Product save(Product product) {
+        return repository.save(product);
+    }
+
+    @Override
+    public boolean deleteById(Long id) {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

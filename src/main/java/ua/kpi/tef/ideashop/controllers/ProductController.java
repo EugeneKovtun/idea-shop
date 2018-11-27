@@ -2,11 +2,14 @@ package ua.kpi.tef.ideashop.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import ua.kpi.tef.ideashop.entity.Product;
 import ua.kpi.tef.ideashop.exception.ItemNotFoundException;
 import ua.kpi.tef.ideashop.service.ProductService;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/product")
@@ -39,4 +42,21 @@ public class ProductController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
         }
     }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
+    public Product createProduct(@ModelAttribute @Valid Product product) {
+        return service.save(product);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteProductById(@PathVariable Long id) {
+        if (service.deleteById(id)) {
+            return new ResponseEntity(HttpStatus.ACCEPTED);
+        } else {
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        }
+    }
+
 }
